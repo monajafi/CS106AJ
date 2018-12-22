@@ -7,7 +7,7 @@
 import "turns";
 
 /*
- * Draws a checkerboard pattern in beepers on the current world.
+ * Another Algorithm for drawing checkerboard
  */
 
 function checkerboard() {
@@ -23,6 +23,10 @@ function checkerboard() {
 	drawCheckerboardRow();
 
 }
+
+/*
+ * Change Karel direction after being sent to upper street
+ */
 
 function changeDirection(){
 	if(leftIsClear()){
