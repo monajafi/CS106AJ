@@ -12,6 +12,8 @@ function Newspeak() {
    console.log("negate(\"cold\") -> " + negate("cold"));
    console.log("intensify(\"cold\") -> " + intensify("cold"));
    console.log("reinforce(\"decker\") -> " + reinforce("decker"))
+   console.log("reinforce(negate(\"cool\")) -> " +
+                reinforce(negate("cool")));
    console.log("reinforce(intensify(\"cool\")) -> " +
                 reinforce(intensify("cool")));
    console.log("reinforce(intensify(negate(\"good\"))) -> " +
