@@ -10,6 +10,8 @@ function Factors(){
     console.log("\n");
     console.log("Factors for 1789:");
     console.log(printFactors(1789));
+    console.log("Factors for 10000:");
+    console.log(printFactors(10000));
 }
 
 /*
