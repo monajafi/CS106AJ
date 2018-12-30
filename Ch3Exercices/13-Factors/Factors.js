@@ -24,9 +24,11 @@ function Factors(){
 function printFactors(n){
     let factor = 2;
     let factorSet = n + " = ";
+    let separator = "";
     while(n > 1){
         while( n % factor === 0){
-            factorSet += factor + " * " ;
+            factorSet += separator + factor;
+            separator = " * ";
             n = Math.floor(n / factor);
         }
         factor++;
