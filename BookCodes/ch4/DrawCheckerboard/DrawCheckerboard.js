@@ -4,8 +4,8 @@
 
 const GWINDOW_WIDTH = 600;
 const GWINDOW_HEIGHT = 500;
-const N_COLUMNS = 8;
-const N_ROWS = 8;
+const N_COLUMNS = 10;
+const N_ROWS = 10;
 const SQUARE_SIZE = 35;
 
 /* 
