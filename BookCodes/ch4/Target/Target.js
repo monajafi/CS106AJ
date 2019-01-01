@@ -7,31 +7,27 @@ const GWINDOW_WIDTH = 500;
 const GWINDOW_HEIGHT = 300;
 
 /*
- * Draws target by creating three circles inside each other that alternate colors progressively
- * x and y indicate the upper left corner of bounding box that surrounds outer circle
+ * Draws a target at the center of graphics window composed of three concenteric circles
+ * alternately colored red and white
  */
 
 function Target(){
     let gw = GWindow(GWINDOW_WIDTH,GWINDOW_HEIGHT);
-    let x = GWINDOW_WIDTH / 2 - OUTER_RADIUS;
-    let y = GWINDOW_HEIGHT / 2 - OUTER_RADIUS;
+    let x = GWINDOW_WIDTH / 2 ;
+    let y = GWINDOW_HEIGHT / 2 ;
     gw.add(createFilledCircle(x,y,OUTER_RADIUS,"Red"));
-    x += OUTER_RADIUS / 3;
-    y += OUTER_RADIUS / 3;
     gw.add(createFilledCircle(x,y,OUTER_RADIUS * 2 / 3,"White"));
-    x += OUTER_RADIUS / 3;
-    y += OUTER_RADIUS / 3;
     gw.add(createFilledCircle(x,y,OUTER_RADIUS / 3,"Red"));
 }
 
 /*
- * Draws circle using x and y coordinate , radius and color as a fill color
+ * Creates a circle of radius r centered at (x,y) filled with the specified color and returns 
+ * initialized GOval object to the caller
  */
 
  function createFilledCircle(x,y,radius,color){
-     let circle = GOval(x,y,2 * radius,2 * radius);
+     let circle = GOval(x - radius,y - radius,2 * radius,2 * radius);
       circle.setColor(color);
       circle.setFilled(true);
-      circle.setFillColor(color);
       return circle;
  }
