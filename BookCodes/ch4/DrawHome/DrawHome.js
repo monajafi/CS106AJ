@@ -1,5 +1,5 @@
 /// <reference path="../libs/JSGraphics.js" />
-"use strict"
+"use strict";
 // Home dimension constants
 const GWINDOW_WIDTH = 500;
 const GWINDOW_HEIGHT = 300;
@@ -14,50 +14,61 @@ const WINDOW_WIDTH = 70;
 const WINDOW_HEIGHT = 50;
 const WINDOW_INSET_X = 26;
 const WINDOW_INSET_Y = 30;
+// Main program
 
-function DrawHome(){
+function DrawHouse(){
     let gw = GWindow(GWINDOW_WIDTH,GWINDOW_HEIGHT);
-    let houseX = GWINDOW_WIDTH / 2 - HOUSE_WIDTH / 2;
-    let houseY = (GWINDOW_HEIGHT - HOUSE_HEIGHT) / 2 + ROOF_HEIGHT;
-    drawFrame(gw,houseX,houseY);
+    let houseX = (GWINDOW_WIDTH - HOUSE_WIDTH) / 2;
+    let houseY = (GWINDOW_HEIGHT - HOUSE_HEIGHT) / 2;
+    drawFrameHouse(gw,houseX,houseY);
 }
 
-function drawFrame(gw,houseX,houseY){
-    let cx = GWINDOW_WIDTH / 2;
-    let cy = GWINDOW_HEIGHT / 2;
-    let bodyRect = GRect(houseX,houseY,HOUSE_WIDTH,HOUSE_HEIGHT - ROOF_HEIGHT);
-    let roofTopY = cy - HOUSE_HEIGHT / 2;
-    let leftRoof = GLine(houseX,houseY,cx,roofTopY);
-    let rightRoof = GLine(cx,roofTopY,cx + HOUSE_WIDTH / 2,houseY);
-    gw.add(bodyRect);
-    gw.add(leftRoof);
-    gw.add(rightRoof);
-    drawDoor(gw,houseX,houseY);
-    //draw two windows
-    let leftWindowX = houseX + WINDOW_INSET_X;
-    let leftWindowY = houseY + WINDOW_INSET_Y;
-    drawWindow(gw,leftWindowX,leftWindowY);
-    let rightWindowX = houseX + HOUSE_WIDTH - (WINDOW_INSET_X + WINDOW_WIDTH);
-    drawWindow(gw,rightWindowX,leftWindowY);
+/*
+ * Draws a simple frame house on the graphics window gw
+ * x and y indicate the upper left corner of the bounding box that surrounds 
+ * the entire house
+ */
+function drawFrameHouse(gw,x,y){
+    drawFrame(gw,x,y);
+    let doorX = x + (HOUSE_WIDTH - DOOR_WIDTH) / 2;
+    let doorY = y + HOUSE_HEIGHT - DOOR_HEIGHT ;
+    drawDoor(gw,doorX,doorY);
+    let leftWindowX = x + WINDOW_INSET_X;
+    let rightWindowX = x + HOUSE_WIDTH - WINDOW_INSET_X - WINDOW_WIDTH;
+    let windowY = y + ROOF_HEIGHT + WINDOW_INSET_Y;
+    drawWindow(gw,leftWindowX,windowY);
+    drawWindow(gw,rightWindowX,windowY);
 }
 
-function drawDoor(gw,houseX,houseY){
-    let doorX = (GWINDOW_WIDTH - DOOR_WIDTH) / 2;
-    let doorY = houseY + (HOUSE_HEIGHT - ROOF_HEIGHT) - DOOR_HEIGHT;
-    let door = GRect(doorX,doorY,DOOR_WIDTH,DOOR_HEIGHT);
-    gw.add(door);
-    let knobX = doorX + DOOR_WIDTH - (DOORKNOB_INSET_X + DOORKNOB_SIZE);
-    let knobY = doorY + DOOR_HEIGHT / 2 - DOORKNOB_SIZE;
-    let doorknob = GOval(knobX,knobY,DOORKNOB_SIZE,DOORKNOB_SIZE);
-    gw.add(doorknob);
-    
+/*
+ * Draws a frame for house on the graphics window
+ * x and y indicate the upper left corner of the bounding box
+ */
+function drawFrame(gw,x,y){
+    let roofY = y + ROOF_HEIGHT;
+    gw.add(GRect(x,roofY,HOUSE_WIDTH,HOUSE_HEIGHT - ROOF_HEIGHT));
+    gw.add(GLine(x,roofY,x + HOUSE_WIDTH / 2,y));
+    gw.add(GLine(x + HOUSE_WIDTH / 2,y,x + HOUSE_WIDTH,roofY));
 }
 
-function drawWindow(gw,windowX,windowY){
-    let windowFrame = GRect(windowX,windowY,WINDOW_WIDTH,WINDOW_HEIGHT);
-    gw.add(windowFrame);
-    let dividerX1 = windowX + WINDOW_WIDTH / 2;
-    let dividerY2 = windowY + WINDOW_HEIGHT;
-    let divider = GLine(dividerX1,windowY,dividerX1,dividerY2);
-    gw.add(divider);
+/*
+ * Draws a door with doorknob on the graphics window gw
+ * the paramters x and y indicate the upper left corner of the door
+ */
+
+function drawDoor(gw,x,y){
+    gw.add(GRect(x,y,DOOR_WIDTH,DOOR_HEIGHT));
+    let doorKnobX = x + DOOR_WIDTH - DOORKNOB_INSET_X - DOORKNOB_SIZE;
+    let doorknobY = y + DOOR_HEIGHT / 2;
+    gw.add(GOval(doorKnobX,doorknobY,DOORKNOB_SIZE,DOORKNOB_SIZE));
+}
+
+/*
+ * Draws a rectangular window divided into two panes
+ * parameters x and y indicate the upper left corner of the window
+ */
+
+function drawWindow(gw,x,y){
+    gw.add(GRect(x,y,WINDOW_WIDTH,WINDOW_HEIGHT));
+    gw.add(GLine(x + WINDOW_WIDTH / 2,y,x + WINDOW_WIDTH / 2,y + WINDOW_HEIGHT));
 }
