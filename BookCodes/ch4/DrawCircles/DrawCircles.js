@@ -12,6 +12,8 @@ const SPACING = 10;
  * Draws five circles centered in graphical window gw
  * x and y indicates the upper left corner of bounding box that 
  * surrounds the five circles
+ * This solution is designed for any number of the circles and is more readble than the 
+ * original solution in the Eric's book.
  */
 
  function DrawCircles(){
