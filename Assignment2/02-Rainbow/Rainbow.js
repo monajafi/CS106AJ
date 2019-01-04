@@ -19,7 +19,7 @@ function Rainbow() {
   // on a cyan backdrop, as specified in the assignment handout.
   let gw = GWindow(GWINDOW_WIDTH,GWINDOW_HEIGHT);
   let x = gw.getWidth() / 2;
-  let y = TOP_INSET;
+  let y = (gw.getHeight() - 14 * ARC_GAP) / 2;
   let background = GRect(GWINDOW_WIDTH,GWINDOW_HEIGHT);
   background.setFilled(true);
   background.setColor("Cyan");
