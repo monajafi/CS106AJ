@@ -1,17 +1,29 @@
+"use strict";
 /*
  * File: Fibonacci.js
  * ------------------
  */
 
 function Fibonacci() {
-  // fibonacciTable(0, 15);
+   fibonacciTable(0, 15);
 }
 
-/*
- * You should remove this comment and complete the file with two functions
- * named fib and fibanacciTable.  Once you've defined both, you can
- * uncomment the call to fibonacciTable from within the Fibonacci function
- * above.  Try changing the values passed to fibonacciTable to ensure your
- * fibonacciTable function works whatever sensible min and max values are
- * provided.
- */
+/* returns nth fibonacci number */
+
+function fib(n){
+  let f0 = 0, f1 = 1 , fn = 0;
+  for(let i = 2;i <= n;i++){
+    fn = f0 + f1;
+    f0 = f1;
+    f1 = fn;
+  }
+  return fn;
+}
+
+/* prints the fibonacci numbers of numbers between min and max numbers */
+
+function fibonacciTable(min,max){
+  for(let i = min;i <= max;i++){
+    console.log("fib(" + i + ") = "+ fib(i));
+  }
+}
