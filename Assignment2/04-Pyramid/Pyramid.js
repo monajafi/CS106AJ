@@ -13,10 +13,10 @@
 /* Constants */
 
 const GWINDOW_WIDTH = 500;
-const GWINDOWS_HEIGHT = 400;
-const BRICK_WIDTH = 50;
-const BRICK_HEIGHT = 20;
-const BRICKS_IN_BASE = 5;
+const GWINDOWS_HEIGHT = 300;
+const BRICK_WIDTH = 30;
+const BRICK_HEIGHT = 15;
+const BRICKS_IN_BASE = 15;
 
 /**
  * Program: Pyramid
@@ -26,6 +26,17 @@ const BRICKS_IN_BASE = 5;
 
 function Pyramid() {
    let gw = GWindow(GWINDOW_WIDTH,GWINDOWS_HEIGHT);
+   // cx and cy are the lower left corner of pyramid
    let cx = GWINDOW_WIDTH / 2 - BRICKS_IN_BASE * BRICK_WIDTH / 2;
-   let cy = GWINDOWS_HEIGHT / 2 + 
+   let cy = GWINDOWS_HEIGHT / 2 + BRICKS_IN_BASE * BRICK_HEIGHT / 2;
+   let x = cx;
+   for(let row = BRICKS_IN_BASE;row >= 1;row--){
+      cy -= BRICK_HEIGHT;
+      for(let column = 1;column <= row;column++){
+         gw.add(GRect(x,cy,BRICK_WIDTH,BRICK_HEIGHT));
+         x += BRICK_WIDTH;
+      }
+      cx += BRICK_WIDTH / 2;
+      x = cx;
+   }
 }

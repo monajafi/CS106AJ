@@ -1,4 +1,4 @@
-/// <reference path="../libs/JSGraphics.js"/>
+/// <reference path="../../../libs/JSGraphics.js"/>
 "use strict";
 /* Checherboard constants */
 
