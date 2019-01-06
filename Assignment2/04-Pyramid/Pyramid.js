@@ -1,3 +1,5 @@
+/// <reference path="../../libs/JSGraphics.js"/>
+"uses strict";
 /*
  * File: Pyramid.js
  * ----------------
@@ -10,7 +12,11 @@
 
 /* Constants */
 
-// remove this comment and place your constants right here
+const GWINDOW_WIDTH = 500;
+const GWINDOWS_HEIGHT = 400;
+const BRICK_WIDTH = 50;
+const BRICK_HEIGHT = 20;
+const BRICKS_IN_BASE = 5;
 
 /**
  * Program: Pyramid
@@ -19,5 +25,7 @@
  */
 
 function Pyramid() {
-   // remove this comment and place your implementation right here
+   let gw = GWindow(GWINDOW_WIDTH,GWINDOWS_HEIGHT);
+   let cx = GWINDOW_WIDTH / 2 - BRICKS_IN_BASE * BRICK_WIDTH / 2;
+   let cy = GWINDOWS_HEIGHT / 2 + 
 }
