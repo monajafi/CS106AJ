@@ -33,7 +33,8 @@ function Pyramid() {
    for(let row = BRICKS_IN_BASE;row >= 1;row--){
       cy -= BRICK_HEIGHT;
       for(let column = 1;column <= row;column++){
-         gw.add(GRect(x,cy,BRICK_WIDTH,BRICK_HEIGHT));
+         let brick = GRect(x,cy,BRICK_WIDTH,BRICK_HEIGHT);
+         gw.add(brick);
          x += BRICK_WIDTH;
       }
       cx += BRICK_WIDTH / 2;
