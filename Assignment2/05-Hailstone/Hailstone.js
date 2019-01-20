@@ -11,5 +11,16 @@ function Hailstone() {
 }
 
 function hailstone(n) {
-	// remove this comment and replace it with your own implementation
+	let count = 0;
+	while (n > 1) {
+		if (n % 2 === 0) {
+			console.log(n + " is even, so I take half: "+ (n / 2));
+			n = n / 2;
+		}else{
+			console.log(n + " is odd, so I make 3n+1: "+ (3 * n + 1));
+			n = 3 * n + 1;
+		}
+		count++;
+	}
+	console.log("The process took " + count + " steps to reach 1.");
 }
