@@ -1,5 +1,5 @@
-/// <reference path="../../libs/JSGraphics.js" />
-/// <reference path="../../libs/RandomLib.js" />
+/// <reference path="../../../libs/JSGraphics.js" />
+/// <reference path="../../../libs/RandomLib.js" />
 
 /*
  * File RandomCircles.js

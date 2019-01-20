@@ -11,7 +11,7 @@
  * The numbers 2, 3, 11 and 12 no longer have special significance after the first roll.
  */
 
- /// <reference path="../../libs/RandomLib.js" />
+ /// <reference path="../../../libs/RandomLib.js" />
 
 "use strict";
 function Craps() {
