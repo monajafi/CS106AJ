@@ -57,34 +57,22 @@ function DrawFace() {
     gw.add(GRect(noseCenter_X - MOUTH_WIDTH / 2,cy + 3/4 * FACE_HEIGHT,
             MOUTH_WIDTH,MOUTH_HEIGHT));
     // 6- mousemove action
-   // gw.addEventListener("mousemove",mouseMoveAction);
+    gw.addEventListener("mousemove",mouseMoveAction);
     function mouseMoveAction(e) {
+        let leftPupilCenter_X = leftPupil.getX() + PUPIL_SIZE / 2;
+        let leftPupilCenter_Y = leftPupil.getY() + PUPIL_SIZE / 2;
+         let dx = e.getX() - leftPupilCenter_X;
+         let dy = e.getY() - leftPupilCenter_Y;
+         let x = (EYE_WIDTH / 2) * dx / Math.sqrt(dx * dx + dy * dy);
+         let y = (EYE_WIDTH / 2) * dy / Math.sqrt(dx * dx + dy * dy);
+        // leftPupil.setLocation(leftPupil.getX() + x, leftPupil.getY() - y);
+         if(leftEye.contains(leftPupilCenter_X + x,leftPupilCenter_Y + y)){
+            leftPupil.setLocation(leftPupil.getX() + x, leftPupil.getY() - y);
+        //    leftPupil.move(x,y);
+         }
         
-        if(dx > EYE_WIDTH / 2){
-            dx = EYE_WIDTH / 2;
-        }
-        if(dy > EYE_WIDTH / 2){
-            dy = EYE_WIDTH / 2;
-        }
-        if(leftPupil.getX() + dx)
-       // leftPupil.move(dx,dy);
-        // let r = Math.sqrt(dx * dx + dy * dy);
-        // if( r < (EYE_WIDTH / 2)){
-
-        // } 
-        leftPupil.movePolar(r,Math.atan(dx / dy));
-        // if(leftEye.contains())
-        // leftPupil.setLocation()
-    }
-    gw.addEventListener("drag",dragAction);
-    function dragAction(e) {
-        let dx = e.getX() - leftPupil.getX();
-        let dy = e.getY() - leftPupil.getY();
-       // leftPupil.move(dx,dy);
-       if(leftEye.contains(leftPupil.getX(),leftPupil.getY()))
-        leftPupil.setLocation(e.getX(),e.getY());
-       // let r = Math.sqrt(dx * dx + dy * dy);
-       // leftPupil.movePolar(r,Math.atan(dx / dy));
+        // leftPupil.setBounds(leftPupil.getX() + x,leftPupil.getY() + y,PUPIL_SIZE,PUPIL_SIZE);
+         //leftPupil.setBounds()
     }
     
 }
