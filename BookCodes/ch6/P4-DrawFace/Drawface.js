@@ -58,21 +58,35 @@ function DrawFace() {
             MOUTH_WIDTH,MOUTH_HEIGHT));
     // 6- mousemove action
     gw.addEventListener("mousemove",mouseMoveAction);
+    let leftPupilCenter_X = leftPupil.getX() + PUPIL_SIZE / 2;
+    let leftPupilCenter_Y = leftPupil.getY() + PUPIL_SIZE / 2;
+    let rightPupilCenter_X = rightPupil.getX() + PUPIL_SIZE / 2;
+    let rightPupilCenter_Y = rightPupil.getY() + PUPIL_SIZE / 2;
     function mouseMoveAction(e) {
-        let leftPupilCenter_X = leftPupil.getX() + PUPIL_SIZE / 2;
-        let leftPupilCenter_Y = leftPupil.getY() + PUPIL_SIZE / 2;
-         let dx = e.getX() - leftPupilCenter_X;
-         let dy = e.getY() - leftPupilCenter_Y;
-         let x = (EYE_WIDTH / 2) * dx / Math.sqrt(dx * dx + dy * dy);
-         let y = (EYE_WIDTH / 2) * dy / Math.sqrt(dx * dx + dy * dy);
-        // leftPupil.setLocation(leftPupil.getX() + x, leftPupil.getY() - y);
-         if(leftEye.contains(leftPupilCenter_X + x,leftPupilCenter_Y + y)){
-            leftPupil.setLocation(leftPupil.getX() + x, leftPupil.getY() - y);
-        //    leftPupil.move(x,y);
-         }
-        
-        // leftPupil.setBounds(leftPupil.getX() + x,leftPupil.getY() + y,PUPIL_SIZE,PUPIL_SIZE);
-         //leftPupil.setBounds()
+         let dxLeft = e.getX() - leftPupilCenter_X;
+         let dyLeft = e.getY() - leftPupilCenter_Y;
+         movePupil(leftPupil,leftPupilCenter_X,leftPupilCenter_Y,dxLeft,dyLeft);
+         let dxRight = e.getX() - rightPupilCenter_X;
+         let dyRight = e.getY() - rightPupilCenter_Y;
+         movePupil(rightPupil,rightPupilCenter_X,rightPupilCenter_Y,dxRight,dyRight);
     }
-    
+}
+
+/*
+ * Moves the pupils in a circle with the fixed radius size of EYE_WIDTH/3. r is the distance between
+ * cursor position and eye center, x and y are the coordinates of pupil on a fixed circle.
+ * the x and y are calculated using trigonemtry according to the attached geometric figure.
+ */
+
+function movePupil(pupil,centerX,centerY,dx,dy) {
+    let r = Math.sqrt(dx * dx + dy * dy);
+    let x = 0; let y = 0;
+    if(r < EYE_WIDTH / 2){
+        x = dx;
+        y = dy;
+    }else{
+        x = (EYE_WIDTH / 3) * dx / r;
+        y = (EYE_WIDTH / 3) * dy / r;
+    }
+    pupil.setLocation(centerX + x - PUPIL_SIZE / 2 , centerY + y - PUPIL_SIZE / 2);
 }
