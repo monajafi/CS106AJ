@@ -1,23 +1,25 @@
 /// <reference path="../../../libs/JSGraphics.js" />
 /*
- * File: BouncingBall.js
+ * File: GCompoundBall.js
  * ---------------------
- * This program bounces a ball inside the boundaries of the graphics window
+ * This program bounces a ball inside the boundaries of the graphics window.
+ * ball created using GCompound
  */
 
  //constants
  const GWINDOW_WIDTH = 500;
  const GWINDOW_HEIGHT = 300;
- const BALL_SIZE = 40;
+ const RADIUS = 20;
 
  /* Main program */
 
- function BouncingBall() {
+ function GCompoundBall() {
      let gw = GWindow(GWINDOW_WIDTH,GWINDOW_HEIGHT);
-     let cx = (GWINDOW_WIDTH - BALL_SIZE) / 2;
-     let cy = (GWINDOW_HEIGHT - BALL_SIZE) / 2;
-     let ball = GOval(cx,cy,BALL_SIZE,BALL_SIZE);
-     gw.add(ball);
+     let cx = gw.getWidth() / 2;
+     let cy = gw.getHeight() / 2;
+     let ball = GCompound();
+     ball.add(GOval(-RADIUS,-RADIUS,2 * RADIUS,2 * RADIUS));
+     gw.add(ball,cx,cy);
      let timer = setInterval(bounceBall,20);
      let dx = 1, dy = 1;
 
@@ -26,10 +28,10 @@
          let y = ball.getY();
          if(isInBoundary(x,y)){
             ball.move(dx,dy);
-         }else if(x <= 0 || (x + BALL_SIZE) > GWINDOW_WIDTH){
+         }else if(x <= RADIUS || (x + RADIUS) > GWINDOW_WIDTH){
              dx = -dx;
              ball.move(dx,dy);
-         }else if(y <= 0 || (y + BALL_SIZE) > GWINDOW_HEIGHT){
+         }else if(y <= RADIUS || (y + RADIUS) > GWINDOW_HEIGHT){
              dy = -dy;
              ball.move(dx,dy);
          }
@@ -39,6 +41,6 @@
  /* checks whether ball is inside graphics window */
 
  function isInBoundary(x,y) {
-     return (x > 0 && x <= GWINDOW_WIDTH && (x + BALL_SIZE) <= GWINDOW_WIDTH && y > 0 && 
-            y <= GWINDOW_HEIGHT && (y + BALL_SIZE) <= GWINDOW_HEIGHT);
+     return (x > RADIUS && (x + RADIUS) <= GWINDOW_WIDTH && y > RADIUS && 
+           (y + RADIUS) <= GWINDOW_HEIGHT);
  }
