@@ -29,10 +29,13 @@
     let stepCount = 0;
     let angle = 45;
     let sweep = 270;
-
+    let shouldOpen = false;
     function movePacMan() {
         pacman.move(dx,0);
-        if(pacman.getStartAngle() === 0){
+        if(angle === 0){
+            shouldOpen = true;
+        }
+        if(shouldOpen){
             angle += ANGLE_STEP;
             sweep -= 2 * ANGLE_STEP;
         }else{
